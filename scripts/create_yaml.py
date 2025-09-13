@@ -1,4 +1,3 @@
-# create_yaml.py
 import yaml
 from master_map import unified_classes
 
@@ -14,3 +13,4 @@ with open(r'C:\Users\kienb\OneDrive\Desktop\DNCNTT\GSTRB\merged_dataset\data.yam
     yaml.dump(data, f)
 
 print("Created data.yaml")
+
