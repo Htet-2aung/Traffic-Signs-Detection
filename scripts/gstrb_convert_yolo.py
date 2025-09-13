@@ -1,11 +1,10 @@
-# gstrb_convert_yolo.py
 import pandas as pd
 import os
 import shutil
 import random
 from master_map import master_map, unified_classes
 
-# Paths
+# Dataset paths
 gtsrb_test_csv = r'C:\Users\kienb\OneDrive\Desktop\DNCNTT\GSTRB\Test.csv'
 gtsrb_image_dir = r'C:\Users\kienb\OneDrive\Desktop\DNCNTT\GSTRB\Test'
 output_dir = r'C:\Users\kienb\OneDrive\Desktop\DNCNTT\GSTRB\merged_dataset'
@@ -67,3 +66,4 @@ for idx, row in test_df.iterrows():
 print(f"GTSRB converted to YOLOv8 format. Processed {processed_count} images.")
 if missing_images:
     print(f"Missing {len(missing_images)} images (showing first 5): {missing_images[:5]}")
+
