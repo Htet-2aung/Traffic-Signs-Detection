@@ -39,7 +39,7 @@ unified_classes = [
     'speed_bump',  # Speed bump/hump
     'sharp_deviation',  # Sharp deviation
     'crossroad',  # Crossroads
-    'falling_rocks',  # Falling rocks
+    'falling_rocks',  # Falling rocks   
     'ferry_terminal',  # Ferry terminal
     'one_way',  # One-way traffic
     'two_way_traffic',  # Two-way traffic
@@ -54,8 +54,8 @@ unified_classes = [
     'no_cycles',  # No entry for cycles
     'no_goods_vehicles',  # No entry for goods vehicles
     'no_pedestrians',  # No entry for pedestrians
-    'no_bullock_carts',  # No entry for bullock carts
-    'no_hand_carts',  # No entry for hand carts
+    'no_bullock_carts',  # No entry for bullock carts    #INDIAN DATASET SINCE IT'S REMOVED NO LONGER USING
+    'no_hand_carts',  # No entry for hand carts    #INDIAN DATASET SINCE IT'S REMOVED NO LONGER USING
     'no_motor_vehicles',  # No entry for motor vehicles
     'height_limit',  # Height limit
     'weight_limit',  # Weight limit
@@ -72,7 +72,7 @@ unified_classes = [
     'unprotected_quay',  # Unprotected quay
     'dip',  # Dip
     'loose_gravel',  # Loose gravel
-    'cattle',  # Cattle
+    'cattle',  # Cattle                       #INDIAN DATASET SINCE IT'S REMOVED NO LONGER USING
     'side_road_junction',  # Side road junction
     'oblique_side_road_junction',  # Oblique side road junction
     't_junction',  # T-junction
@@ -327,3 +327,4 @@ master_map = {
         58: 47   # Refreshments -> other_danger (merged as miscellaneous)
     }
 }
+
