@@ -22,10 +22,11 @@ The two source datasets were fundamentally incompatible for direct use:
 
 1.  **Different Task Formats:**
     * **GTSRB:** A classification dataset containing thousands of pre-cropped images of individual signs. It lacks bounding box annotations.
-      - **Total Images**: 51,839
+      - **Total Images**: 51,839 images
       -  [GTSRB] : https://www.kaggle.com/datasets/meowmeowmeowmeowmeow/gtsrb-german-traffic-sign
     * **VNTS (Roboflow):** A detection dataset with full images and corresponding `.txt` label files containing bounding box coordinates for each sign.
-[VNTS] : https://universe.roboflow.com/vietnam-traffic-sign-detection/vietnam-traffic-sign-detection-2i2j8/dataset/5     
+      - **Total Images**: ~10,940 images 
+      - [VNTS] : https://universe.roboflow.com/vietnam-traffic-sign-detection/vietnam-traffic-sign-detection-2i2j8/dataset/5     
 2.  **Inconsistent Class Labels:**
     * The class IDs are not aligned. For example, a `Stop` sign in GTSRB might be class `14`, while in our Vietnamese dataset, it could be class `0`. A direct merge would cause the model to learn incorrect labels.
 
