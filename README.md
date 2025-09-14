@@ -2,13 +2,15 @@
 
 This repository is for the Semester 1 2025-2026 Information Technology Project, held under the supervision of the Faculty of Information Technology, Ton Duc Thang University. This project aims to create a deep learning/computer vision model that can detect traffic signs globally and locally in Vietnam.
 
-This project uses two lifelike datasets: the GTSRB (German Traffic Sign Recognition Benchmark) and the Vietnam Traffic Signs Dataset from Roboflow.
 
 <p align="center">
   <img src="/batch/train_batch1.jpg" alt="Traffic Sign Example" width="400"/>
 </p>
 
 <hr>
+
+This project uses two lifelike datasets: the GTSRB (German Traffic Sign Recognition Benchmark) and the Vietnam Traffic Signs Dataset from Roboflow.
+
 
 ## Data Engineering: Building a Unified Dataset
 
