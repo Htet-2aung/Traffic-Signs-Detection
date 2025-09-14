@@ -5,10 +5,10 @@ This repository is for the Semester 1 2025-2026 Information Technology Project, 
 This project uses two lifelike datasets: the GTSRB (German Traffic Sign Recognition Benchmark) and the Vietnam Traffic Signs Dataset from Roboflow.
 
 <p align="center">
-  <img src="https://github.com/Htet-2aung/Traffic-Signs-Detection/blob/main/batch/train_batch1.jpg?raw=true
-" alt="Traffic Sign Example" width="400"/>
+  <img src="/batch/train_batch1.jpg" alt="Traffic Sign Example" width="400"/>
 </p>
----
+
+<hr>
 
 ## Data Engineering: Building a Unified Dataset
 
