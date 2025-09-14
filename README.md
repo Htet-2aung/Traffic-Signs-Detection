@@ -21,7 +21,9 @@ The core of this project's success lies in the creation of a robust, hybrid data
 The two source datasets were fundamentally incompatible for direct use:
 
 1.  **Different Task Formats:**
-    * **GTSRB:** A classification dataset containing thousands of pre-cropped images of individual signs. It lacks bounding box annotations.                       [GTSRB] : https://www.kaggle.com/datasets/meowmeowmeowmeowmeow/gtsrb-german-traffic-sign
+    * **GTSRB:** A classification dataset containing thousands of pre-cropped images of individual signs. It lacks bounding box annotations.
+      - **Total Images**: 51,839
+      -  [GTSRB] : https://www.kaggle.com/datasets/meowmeowmeowmeowmeow/gtsrb-german-traffic-sign
     * **VNTS (Roboflow):** A detection dataset with full images and corresponding `.txt` label files containing bounding box coordinates for each sign.
 [VNTS] : https://universe.roboflow.com/vietnam-traffic-sign-detection/vietnam-traffic-sign-detection-2i2j8/dataset/5     
 2.  **Inconsistent Class Labels:**
