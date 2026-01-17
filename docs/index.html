@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Traffic Signs Detection | Documentation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #3b82f6;
+            --primary-dark: #1d4ed8;
+            --secondary: #64748b;
+            --bg-body: #f3f4f6;
+            --bg-sidebar: #ffffff;
+            --bg-content: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            --radius: 0.75rem;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            margin: 0;
+            display: flex;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        /* Sidebar Navigation */
+        aside {
+            width: 280px;
+            background-color: var(--bg-sidebar);
+            border-right: 1px solid var(--border);
+            position: fixed;
+            height: 100vh;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+        }
+
+        .brand {
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: var(--primary-dark);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .brand-subtitle {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            font-weight: 500;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav li {
+            margin-bottom: 0.5rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-weight: 500;
+            display: block;
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            transition: all 0.2s ease;
+        }
+
+        nav a:hover, nav a.active {
+            background-color: #eff6ff;
+            color: var(--primary);
+        }
+
+        /* Main Content */
+        main {
+            margin-left: 280px; /* Width of sidebar */
+            flex: 1;
+            padding: 3rem 4rem;
+            max-width: 1200px;
+        }
+
+        header {
+            margin-bottom: 3rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin: 0 0 0.5rem 0;
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--border);
+            color: var(--text-main);
+        }
+
+        h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--primary-dark);
+            margin-top: 1.5rem;
+        }
+
+        p {
+            color: #334155;
+            margin-bottom: 1.25rem;
+        }
+
+        /* Cards & Components */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .card h3 {
+            margin-top: 0;
+        }
+
+        /* Lists within cards */
+        .card ul, .card ol {
+            padding-left: 1.25rem;
+            margin-bottom: 0;
+            font-size: 0.95rem;
+            color: #475569;
+        }
+        
+        .card li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Code Blocks */
+        code {
+            font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
+            font-size: 0.9em;
+            background-color: #f1f5f9;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            color: #0f172a;
+        }
+
+        pre {
+            background-color: #1e293b;
+            color: #e2e8f0;
+            padding: 1.25rem;
+            border-radius: var(--radius);
+            overflow-x: auto;
+            font-size: 0.9rem;
+        }
+
+        /* Class Grid */
+        .class-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 0.75rem;
+            padding: 1rem;
+            background: white;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            max-height: 500px;
+            overflow-y: auto;
+        }
+
+        .class-badge {
+            font-size: 0.85rem;
+            padding: 0.5rem 0.75rem;
+            background-color: #f8fafc;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            color: #475569;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .class-id {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 0.75rem;
+            background: #dbeafe;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.875rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body {
+                flex-direction: column;
+            }
+            aside {
+                width: 100%;
+                height: auto;
+                position: relative;
+                border-right: none;
+                border-bottom: 1px solid var(--border);
+                padding: 1rem;
+            }
+            main {
+                margin-left: 0;
+                padding: 2rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<aside>
+    <div class="brand">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+        TS Detection
+    </div>
+    <div class="brand-subtitle">Sem 1 2025-2026 IT Project</div>
+    
+    <nav>
+        <ul>
+            <li><a href="#overview">Overview</a></li>
+            <li><a href="#datasets">Data Sources</a></li>
+            <li><a href="#engineering">Data Engineering</a></li>
+            <li><a href="#classes">Class List</a></li>
+            <li><a href="#scripts">Scripts</a></li>
+        </ul>
+    </nav>
+</aside>
+
+<main>
+    <header>
+        <h1>Traffic Signs Detection</h1>
+        <p class="lead">A deep learning computer vision project supervised by the Faculty of Information Technology, Ton Duc Thang University.</p>
+    </header>
+
+    <section id="overview">
+        <h2>Project Overview</h2>
+        <p>This project aims to create a robust deep learning model capable of detecting traffic signs both globally and within the specific local context of Vietnam. By leveraging computer vision techniques, the model is designed to identify and classify a wide variety of traffic regulatory signs.</p>
+        <p>The solution involves a complex data engineering pipeline that merges international benchmarks with local datasets to create a unified training environment for YOLOv8/YOLOv11 architectures.</p>
+    </section>
+
+    <section id="datasets">
+        <h2>Data Sources</h2>
+        <div class="card-grid">
+            <div class="card">
+                <h3>GTSRB Dataset</h3>
+                <p style="font-size: 0.9rem; color: #64748b;">German Traffic Sign Recognition Benchmark</p>
+                <ul>
+                    <li><strong>Type:</strong> Classification</li>
+                    <li><strong>Size:</strong> ~51,839 images</li>
+                    <li><strong>Format:</strong> Cropped images, no boxes</li>
+                    <li><strong>Purpose:</strong> General shape/type learning</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>VNTS Dataset</h3>
+                <p style="font-size: 0.9rem; color: #64748b;">Vietnam Traffic Signs (Roboflow)</p>
+                <ul>
+                    <li><strong>Type:</strong> Detection</li>
+                    <li><strong>Size:</strong> ~10,940 images</li>
+                    <li><strong>Format:</strong> Full scene + Bounding boxes</li>
+                    <li><strong>Purpose:</strong> Local context & variants</li>
+                </ul>
+            </div>
+        </div>
+        <p style="font-size: 0.9rem;"><em>Sources: <a href="https://www.kaggle.com/datasets/meowmeowmeowmeowmeow/gtsrb-german-traffic-sign" target="_blank">Kaggle GTSRB</a> and <a href="https://universe.roboflow.com/vietnam-traffic-sign-detection/vietnam-traffic-sign-detection-2i2j8/dataset/5" target="_blank">Roboflow VNTS</a>.</em></p>
+    </section>
+
+    <section id="engineering">
+        <h2>Data Engineering Pipeline</h2>
+        <p>To train a single model on these incompatible datasets, a three-step unification pipeline was implemented.</p>
+
+        <div class="card" style="margin-bottom: 1.5rem;">
+            <h3>1. The Master Class Map</h3>
+            <p>A "Master Map" was created to resolve inconsistent labeling (e.g., mapping German "Stop" class 14 and Vietnamese "Stop" class 0 to a single unified ID). The final dataset supports <strong>80 unique classes</strong>.</p>
+        </div>
+
+        <div class="card" style="margin-bottom: 1.5rem;">
+            <h3>2. Standardization to YOLOv8</h3>
+            <p>We standardized annotations into the YOLO format (<code>class_id x_center y_center width height</code>):</p>
+            <ul>
+                <li><strong>VNTS:</strong> Exported directly in YOLOv8 format.</li>
+                <li><strong>GTSRB:</strong> Since GTSRB contains only cropped images of signs, a custom script <code>gstrb_convert_yolo.py</code> was used to:
+                    <ol>
+                        <li>Convert images from <code>.ppm</code> to <code>.png</code>.</li>
+                        <li>Generate pseudo-bounding boxes covering the full image.</li>
+                        <li>Map original IDs to the unified Master IDs.</li>
+                        <li>Split data into Train (80%), Val (10%), and Test (10%) sets.</li>
+                    </ol>
+                </li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h3>3. Merging & Configuration</h3>
+            <p>The processed images and labels were merged into a single directory structure. A <code>data.yaml</code> file was automatically generated to define the paths and class names for YOLO training.</p>
+        </div>
+    </section>
+
+    <section id="classes">
+        <h2>Supported Classes</h2>
+        <p>The model is trained to recognize 80 unified traffic sign categories:</p>
+        <div class="class-grid">
+            <div class="class-badge"><span class="class-id">0</span> speed_limit</div>
+            <div class="class-badge"><span class="class-id">1</span> end_speed_limit</div>
+            <div class="class-badge"><span class="class-id">2</span> no_passing</div>
+            <div class="class-badge"><span class="class-id">3</span> no_heavy_vehicles</div>
+            <div class="class-badge"><span class="class-id">4</span> priority_road</div>
+            <div class="class-badge"><span class="class-id">5</span> yield</div>
+            <div class="class-badge"><span class="class-id">6</span> stop</div>
+            <div class="class-badge"><span class="class-id">7</span> no_vehicles</div>
+            <div class="class-badge"><span class="class-id">8</span> heavy_veh_prohibited</div>
+            <div class="class-badge"><span class="class-id">9</span> no_entry</div>
+            <div class="class-badge"><span class="class-id">10</span> general_caution</div>
+            <div class="class-badge"><span class="class-id">11</span> curve_left</div>
+            <div class="class-badge"><span class="class-id">12</span> curve_right</div>
+            <div class="class-badge"><span class="class-id">13</span> double_curve</div>
+            <div class="class-badge"><span class="class-id">14</span> bumpy_road</div>
+            <div class="class-badge"><span class="class-id">15</span> slippery_road</div>
+            <div class="class-badge"><span class="class-id">16</span> road_narrows</div>
+            <div class="class-badge"><span class="class-id">17</span> road_work</div>
+            <div class="class-badge"><span class="class-id">18</span> traffic_signals</div>
+            <div class="class-badge"><span class="class-id">19</span> pedestrians</div>
+            <div class="class-badge"><span class="class-id">20</span> children_crossing</div>
+            <div class="class-badge"><span class="class-id">21</span> bicycles_crossing</div>
+            <div class="class-badge"><span class="class-id">22</span> ice_snow</div>
+            <div class="class-badge"><span class="class-id">23</span> wild_animals</div>
+            <div class="class-badge"><span class="class-id">24</span> end_limits</div>
+            <div class="class-badge"><span class="class-id">25</span> turn_right_ahead</div>
+            <div class="class-badge"><span class="class-id">26</span> turn_left_ahead</div>
+            <div class="class-badge"><span class="class-id">27</span> ahead_only</div>
+            <div class="class-badge"><span class="class-id">28</span> straight_or_right</div>
+            <div class="class-badge"><span class="class-id">29</span> straight_or_left</div>
+            <div class="class-badge"><span class="class-id">30</span> keep_right</div>
+            <div class="class-badge"><span class="class-id">31</span> keep_left</div>
+            <div class="class-badge"><span class="class-id">32</span> roundabout</div>
+            <div class="class-badge"><span class="class-id">33</span> speed_bump</div>
+            <div class="class-badge"><span class="class-id">34</span> sharp_deviation</div>
+            <div class="class-badge"><span class="class-id">35</span> crossroad</div>
+            <div class="class-badge"><span class="class-id">36</span> falling_rocks</div>
+            <div class="class-badge"><span class="class-id">37</span> ferry_terminal</div>
+            <div class="class-badge"><span class="class-id">38</span> one_way</div>
+            <div class="class-badge"><span class="class-id">39</span> two_way_traffic</div>
+            <div class="class-badge"><span class="class-id">40</span> steep_hill</div>
+            <div class="class-badge"><span class="class-id">41</span> railway_crossing</div>
+            <div class="class-badge"><span class="class-id">42</span> tramway_crossing</div>
+            <div class="class-badge"><span class="class-id">43</span> traffic_queues</div>
+            <div class="class-badge"><span class="class-id">44</span> low_flying_aircraft</div>
+            <div class="class-badge"><span class="class-id">45</span> crosswind</div>
+            <div class="class-badge"><span class="class-id">46</span> tunnel</div>
+            <div class="class-badge"><span class="class-id">47</span> other_danger</div>
+            <div class="class-badge"><span class="class-id">48</span> no_cycles</div>
+            <div class="class-badge"><span class="class-id">49</span> no_goods_vehicles</div>
+            <div class="class-badge"><span class="class-id">50</span> no_pedestrians</div>
+            <div class="class-badge"><span class="class-id">51</span> no_bullock_carts</div>
+            <div class="class-badge"><span class="class-id">52</span> no_hand_carts</div>
+            <div class="class-badge"><span class="class-id">53</span> no_motor_vehicles</div>
+            <div class="class-badge"><span class="class-id">54</span> height_limit</div>
+            <div class="class-badge"><span class="class-id">55</span> weight_limit</div>
+            <div class="class-badge"><span class="class-id">56</span> axle_weight_limit</div>
+            <div class="class-badge"><span class="class-id">57</span> length_limit</div>
+            <div class="class-badge"><span class="class-id">58</span> no_left_turn</div>
+            <div class="class-badge"><span class="class-id">59</span> no_right_turn</div>
+            <div class="class-badge"><span class="class-id">60</span> horn_prohibited</div>
+            <div class="class-badge"><span class="class-id">61</span> no_parking</div>
+            <div class="class-badge"><span class="class-id">62</span> no_stopping</div>
+            <div class="class-badge"><span class="class-id">63</span> steep_descent</div>
+            <div class="class-badge"><span class="class-id">64</span> steep_ascent</div>
+            <div class="class-badge"><span class="class-id">65</span> narrow_bridge</div>
+            <div class="class-badge"><span class="class-id">66</span> unprotected_quay</div>
+            <div class="class-badge"><span class="class-id">67</span> dip</div>
+            <div class="class-badge"><span class="class-id">68</span> loose_gravel</div>
+            <div class="class-badge"><span class="class-id">69</span> cattle</div>
+            <div class="class-badge"><span class="class-id">70</span> side_road_junction</div>
+            <div class="class-badge"><span class="class-id">71</span> oblique_side_road_junction</div>
+            <div class="class-badge"><span class="class-id">72</span> t_junction</div>
+            <div class="class-badge"><span class="class-id">73</span> y_junction</div>
+            <div class="class-badge"><span class="class-id">74</span> staggered_junction</div>
+            <div class="class-badge"><span class="class-id">75</span> guarded_level_crossing</div>
+            <div class="class-badge"><span class="class-id">76</span> unguarded_level_crossing</div>
+            <div class="class-badge"><span class="class-id">77</span> level_crossing_countdown</div>
+            <div class="class-badge"><span class="class-id">78</span> parking</div>
+            <div class="class-badge"><span class="class-id">79</span> bus_stop</div>
+        </div>
+    </section>
+
+    <section id="scripts">
+        <h2>Pipeline Scripts Reference</h2>
+        <div class="card-grid">
+            <div class="card">
+                <code>pipeline/master_map.py</code>
+                <p>Defines the dictionary mapping raw IDs to the unified list of 80 classes.</p>
+            </div>
+            <div class="card">
+                <code>pipeline/gstrb_convert_yolo.py</code>
+                <p>Reads GTSRB CSV data, creates pseudo-boxes, splits data, and outputs YOLO labels.</p>
+            </div>
+            <div class="card">
+                <code>pipeline/merge_vnts.py</code>
+                <p>Organizes VNTS data into the final training directory structure.</p>
+            </div>
+            <div class="card">
+                <code>pipeline/create_yaml.py</code>
+                <p>Generates the configuration file required by YOLO to start training.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Traffic Signs Detection Project. Generated for Ton Duc Thang University.</p>
+    </footer>
+</main>
+
+<script>
+    // Simple smooth scrolling for navigation
+    document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+            // Update active state
+            document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+            this.classList.add('active');
+        });
+    });
+</script>
+
+</body>
+</html>
