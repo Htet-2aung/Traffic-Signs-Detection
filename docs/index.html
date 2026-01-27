@@ -77,8 +77,14 @@
     <nav class="glass-nav fixed w-full z-50 top-0 left-0">
         <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
             <div class="flex items-center gap-2">
-                <div class="w-8 h-8 bg-brand-500 rounded-lg flex items-center justify-center text-white font-bold font-display">TS</div>
-                <span class="font-display font-bold text-lg text-white tracking-tight">TrafficSign<span class="text-brand-500">AI</span></span>
+<img 
+    src="https://github.com/Htet-2aung/Traffic-Signs-Detection/blob/main/docs/unnamed-removebg-preview.png?raw=true" 
+    alt="Logo" 
+    class="w-10 h-10 object-contain"
+>
+
+
+<span class="font-display font-bold text-lg text-white tracking-tight">TrafficSignDetection<span class="text-brand-500"></span></span>
             </div>
             <div class="hidden md:flex gap-8 text-sm font-medium">
                 <a href="#problem" class="hover:text-brand-400 transition-colors">The Problem</a>
@@ -110,15 +116,15 @@
             <div class="flex flex-wrap justify-center gap-4">
                 <div class="px-6 py-3 glass-card rounded-xl text-center">
                     <div class="text-2xl font-bold text-white font-display">99.7%</div>
-                    <div class="text-xs text-brand-400 uppercase tracking-wider">Acc (Class.) [cite: 101]</div>
+                    <div class="text-xs text-brand-400 uppercase tracking-wider">Acc (Class.)</div>
                 </div>
                 <div class="px-6 py-3 glass-card rounded-xl text-center">
                     <div class="text-2xl font-bold text-white font-display">0.851</div>
-                    <div class="text-xs text-brand-400 uppercase tracking-wider">mAP (Detect) [cite: 103]</div>
+                    <div class="text-xs text-brand-400 uppercase tracking-wider">mAP (Detect)</div>
                 </div>
                 <div class="px-6 py-3 glass-card rounded-xl text-center">
                     <div class="text-2xl font-bold text-white font-display">80</div>
-                    <div class="text-xs text-brand-400 uppercase tracking-wider">Unified Classes [cite: 100]</div>
+                    <div class="text-xs text-brand-400 uppercase tracking-wider">Unified Classes</div>
                 </div>
             </div>
         </div>
@@ -131,7 +137,7 @@
                 <div>
                     <h2 class="font-display text-3xl font-bold text-white mb-4">The Challenge: <br>Domain Gap</h2>
                     <p class="text-slate-400 mb-6">
-                        Models trained on European standards (GTSRB) fail in Southeast Asian environments. This project addresses three specific gaps[cite: 109]:
+                        Models trained on European standards (GTSRB) fail in Southeast Asian environments. This project addresses three specific gaps:
                     </p>
                     <ul class="space-y-4">
                         <li class="flex gap-4">
@@ -140,7 +146,7 @@
                             </div>
                             <div>
                                 <h4 class="text-white font-semibold">Visual Appearance</h4>
-                                <p class="text-sm text-slate-500">Sign designs, fonts, and colors differ significantly between Germany and Vietnam[cite: 110].</p>
+                                <p class="text-sm text-slate-500">Sign designs, fonts, and colors differ significantly between Germany and Vietnam.</p>
                             </div>
                         </li>
                         <li class="flex gap-4">
@@ -149,7 +155,7 @@
                             </div>
                             <div>
                                 <h4 class="text-white font-semibold">Semantic Labeling</h4>
-                                <p class="text-sm text-slate-500">Class ID conflicts. E.g., "Stop" is ID 14 in GTSRB but ID 29 in VNTS[cite: 112].</p>
+                                <p class="text-sm text-slate-500">Class ID conflicts. E.g., "Stop" is ID 14 in GTSRB but ID 29 in VNTS.</p>
                             </div>
                         </li>
                         <li class="flex gap-4">
@@ -158,7 +164,7 @@
                             </div>
                             <div>
                                 <h4 class="text-white font-semibold">Environmental Context</h4>
-                                <p class="text-sm text-slate-500">Different lighting conditions, vegetation, and background clutter[cite: 111].</p>
+                                <p class="text-sm text-slate-500">Different lighting conditions, vegetation, and background clutter.</p>
                             </div>
                         </li>
                     </ul>
@@ -196,7 +202,7 @@
                     <div class="flex justify-between items-end mb-6">
                         <div>
                             <h3 class="text-xl font-bold text-white">Classification Phase</h3>
-                            <p class="text-sm text-slate-400">Accuracy Comparison (Test Set) [cite: 384]</p>
+                            <p class="text-sm text-slate-400">Accuracy Comparison (Test Set)</p>
                         </div>
                     </div>
                     <div class="chart-container">
@@ -211,14 +217,14 @@
                     <div class="flex justify-between items-end mb-6">
                         <div>
                             <h3 class="text-xl font-bold text-white">Detection Phase</h3>
-                            <p class="text-sm text-slate-400">YOLO Model Comparison (mAP 50-95) [cite: 434]</p>
+                            <p class="text-sm text-slate-400">YOLO Model Comparison (mAP 50-95) </p>
                         </div>
                     </div>
                     <div class="chart-container">
                         <canvas id="detectionChart"></canvas>
                     </div>
                     <p class="mt-4 text-xs text-slate-400 border-t border-white/5 pt-4">
-                        <strong class="text-brand-400">Insight:</strong> YOLOv8s achieved the highest Recall (95.6%), making it safer for ADAS than the newer YOLOv11n[cite: 419].
+                        <strong class="text-brand-400">Insight:</strong> YOLOv8s achieved the highest Recall (95.6%), making it safer for ADAS than the newer YOLOv11n.
                     </p>
                 </div>
             </div>
@@ -234,7 +240,7 @@
                         <span class="px-2 py-1 bg-brand-500/20 text-brand-300 text-xs rounded border border-brand-500/20">master_map.py</span>
                     </div>
                     <p class="text-slate-400 mt-2 text-sm">
-                        Developed a dictionary map to resolve "Class Collision". Example: GTSRB_14 (Stop) and VNTS_29 (Stop) were both re-routed to <span class="text-white font-mono">Unified Class 6</span>[cite: 125, 127].
+                        Developed a dictionary map to resolve "Class Collision". Example: GTSRB_14 (Stop) and VNTS_29 (Stop) were both re-routed to <span class="text-white font-mono">Unified Class 6</span>.
                     </p>
                     <div class="mt-4 font-mono text-xs text-slate-500 bg-black/30 p-3 rounded-lg border border-white/5">
                         { "14": 6, "29": 6, ... }
@@ -244,7 +250,7 @@
                 <div class="glass-card p-6 rounded-2xl md:col-span-1 bg-gradient-to-br from-brand-900/50 to-transparent border-brand-500/30">
                     <h3 class="text-lg font-bold text-white">Normalization</h3>
                     <p class="text-slate-400 mt-2 text-sm">
-                        Converted absolute pixel coordinates (GTSRB) to normalized YOLO format $(x_c, y_c, w, h)$[cite: 131].
+                        Converted absolute pixel coordinates (GTSRB) to normalized YOLO format.
                     </p>
                 </div>
 
@@ -299,7 +305,7 @@
                         <span class="text-brand-400 font-bold">79</span> bus_stop
                     </div>
                     <div class="col-span-full text-center py-4 text-xs text-slate-500 italic">
-                        ... Full list of 80 classes defined in Appendix A [cite: 201]
+                        ... Full list of 80 classes defined in Appendix in the report.
                     </div>
                 </div>
             </div>
